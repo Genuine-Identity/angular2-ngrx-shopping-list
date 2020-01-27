@@ -9,7 +9,8 @@ import { ShoppingService } from '../../shopping.service';
 @Injectable()
 export class ShoppingEffects {
 
-  @Effect() loadShopping$ = this.actions$
+  @Effect() 
+  loadShopping$ = this.actions$
     .pipe(
       ofType<LoadShoppingAction>(ShoppingActionTypes.LOAD_SHOPPING),
       mergeMap(
