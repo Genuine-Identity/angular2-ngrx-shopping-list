@@ -37,10 +37,11 @@ export class ShoppingService {
       .valueChanges();
   }
   public addShoppingItem(shoppingItem: ShoppingItem) {
+    console.log(shoppingItem)
     return this.db.collection(this.basePath).add(shoppingItem);
   }
 
   deleteShoppingItem(id: string) {
-    return this.http.delete(`${this.SHOPPING_URL}/${id}`).pipe(delay(500));
+    //return this.http.delete(`${this.SHOPPING_URL}/${id}`).pipe(delay(500));
   }
 }
