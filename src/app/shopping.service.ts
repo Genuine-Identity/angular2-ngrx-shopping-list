@@ -13,7 +13,6 @@ import {
   providedIn: "root"
 })
 export class ShoppingService {
-  private SHOPPING_URL = "http://localhost:3000/shopping";
   private basePath: string = "/shopping";
 
   private angularFirestoreCollection: AngularFirestoreCollection<ShoppingItem>;
@@ -23,7 +22,6 @@ export class ShoppingService {
   LogsAngularFirestoreCollection: AngularFirestoreCollection<ShoppingItem>;
   constructor(private db: AngularFirestore, private http: HttpClient) {}
 
-  
   public getShoppingItems(): Observable<any[]> {
     var start = new Date();
     start.setDate(start.getDate() - 365);
@@ -37,9 +35,11 @@ export class ShoppingService {
       )
       .valueChanges();
   }
-  addShoppingItem(shoppingItem: ShoppingItem) {
-    return this.http.post(this.SHOPPING_URL, shoppingItem).pipe(delay(500));
+  public addShoppingItem(shoppingItem: ShoppingItem) {
+    this.db.collection(this.basePath).add(shoppingItem);
   }
+
+  
 
   deleteShoppingItem(id: string) {
     return this.http.delete(`${this.SHOPPING_URL}/${id}`).pipe(delay(500));

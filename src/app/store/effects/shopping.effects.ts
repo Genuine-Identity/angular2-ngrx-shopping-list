@@ -16,6 +16,7 @@ export class ShoppingEffects {
         () => this.shoppingService.getShoppingItems()
           .pipe(
             map(data => {
+              console.log(data)
               return new LoadShoppingSuccessAction(data)
             }),
             catchError(error => of(new LoadShoppingFailureAction(error)))
