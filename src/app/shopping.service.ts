@@ -22,7 +22,8 @@ export class ShoppingService {
   LogsAngularFirestoreCollection: AngularFirestoreCollection<ShoppingItem>;
   constructor(private db: AngularFirestore, private http: HttpClient) {}
 
-  public getShoppingItems(){
+  public getShoppingItems() {
+    console.log('a')
     var start = new Date();
     start.setDate(start.getDate() - 365);
     var end = new Date();
@@ -36,10 +37,8 @@ export class ShoppingService {
       .valueChanges();
   }
   public addShoppingItem(shoppingItem: ShoppingItem) {
-    this.db.collection(this.basePath).add(shoppingItem);
+    return this.db.collection(this.basePath).add(shoppingItem);
   }
-
-  
 
   deleteShoppingItem(id: string) {
     return this.http.delete(`${this.SHOPPING_URL}/${id}`).pipe(delay(500));
