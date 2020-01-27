@@ -22,7 +22,7 @@ export class ShoppingService {
   LogsAngularFirestoreCollection: AngularFirestoreCollection<ShoppingItem>;
   constructor(private db: AngularFirestore, private http: HttpClient) {}
 
-  public getShoppingItems(): Observable<any[]> {
+  public getShoppingItems(){
     var start = new Date();
     start.setDate(start.getDate() - 365);
     var end = new Date();
